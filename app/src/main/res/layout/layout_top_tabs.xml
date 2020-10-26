@@ -1,0 +1,34 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        >
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <com.google.android.material.tabs.TabLayout
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_top"
+                android:layout_width="match_parent"
+                android:id="@+id/tabs">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="tab_1"
+                    android:id="@+id/tab1"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="tab_2"
+                    android:id="@+id/tab2"/>
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:icon="@drawable/ic_android"/>-->
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
+
+</merge>
