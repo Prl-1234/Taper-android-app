@@ -28,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final String TAG="SearchAcitivity";
     private static final int Activity_num=4;
     private ProgressBar mProgressBar;
+    private static final int NUM_GRID_COL=3;
     private Context mContext=ProfileActivity.this;
     private ImageView profilephoto;
     @Override
@@ -45,7 +46,16 @@ public class ProfileActivity extends AppCompatActivity {
     private void tempGridSetup(){
         ArrayList<String> imgURLs=new ArrayList<>();
         imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
-
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
+        imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
         imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
 
         imgURLs.add("https://www.kolpaper.com/wp-content/uploads/2020/05/Moon-Street-Iphone-Wallpaper.jpg");
@@ -59,6 +69,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
     private void setUpImageGrid(ArrayList<String> imgURLs){
         GridView gridView=(GridView) findViewById(R.id.gridview);
+        int gridwidth=getResources().getDisplayMetrics().widthPixels;
+        int imagewidth=gridwidth/NUM_GRID_COL;
+        gridView.setColumnWidth(imagewidth);
         GridImageAdapter adapter=new GridImageAdapter(mContext,R.layout.layout_grid_imageview,"",imgURLs);
         gridView.setAdapter(adapter);
     }

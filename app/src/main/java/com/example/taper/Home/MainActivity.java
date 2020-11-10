@@ -1,6 +1,7 @@
 
 package com.example.taper.Home;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +15,8 @@ import com.example.taper.Utils.BottomNavigationViewHelper;
 import com.example.taper.Utils.SectionPagerAdapter;
 import com.example.taper.Utils.UniversalImageLoader;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG="HomeActivity";
     private static final int Activity_num=0;
     private Context mcontext=MainActivity.this;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +33,39 @@ public class MainActivity extends AppCompatActivity {
         initImageLoader();
         setup_bottom_navigation();
         setUpViewPager();
+        setUpFirebase();
+        //mAuth = FirebaseAuth.getInstance();
     }
+    private void setUpFirebase(){
+        mAuth=FirebaseAuth.getInstance();
+        mAuthListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user=firebaseAuth.getCurrentUser();
+                if(user!=null){
+
+                }
+                else{
+
+                }
+            }
+        };
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mAuthListener!=null){
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+    }
+
     private void initImageLoader(){
         UniversalImageLoader universalImageLoader=new UniversalImageLoader(mcontext);
         ImageLoader.getInstance().init(universalImageLoader.getConfig());

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "267838131578",
+    "firebase_url": "https://taper-6b828.firebaseio.com",
+    "project_id": "taper-6b828",
+    "storage_bucket": "taper-6b828.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267838131578:android:7a9578ed5d3305d47bdac3",
+        "android_client_info": {
+          "package_name": "com.example.taper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267838131578-0bva14he4l2qpvvjq0tcd1jblobipph1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.taper",
+            "certificate_hash": "e9da75812f1f601e56ad2ffb3dba767951f7cb91"
+          }
+        },
+        {
+          "client_id": "267838131578-7j4prf0r2lqgfgrqvgh2sfbtu9u8ouqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYeBGbX8dGNS-udic7qoyhOjcyz6NwGA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267838131578-7j4prf0r2lqgfgrqvgh2sfbtu9u8ouqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
