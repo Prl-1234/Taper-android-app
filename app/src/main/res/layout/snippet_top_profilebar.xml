@@ -20,7 +20,7 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/profileName"
+                    android:id="@+id/username"
                     />
                 <ImageView
                     android:layout_width="25dp"

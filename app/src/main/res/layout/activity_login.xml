@@ -11,12 +11,14 @@
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     >
+
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:src="@drawable/logo"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="25dp"/>
+        android:src="@drawable/final_logo"
+        android:layout_marginBottom="25dp"
+    />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +61,7 @@
         android:layout_marginBottom="25dp"
         android:text="Create Account"
         android:layout_gravity="center"
-        android:textSize="10sp"
+        android:textSize="20sp"
         android:id="@+id/link_signup"
         android:textColor="@color/green"/>
 </LinearLayout>
@@ -78,5 +80,6 @@
         android:layout_alignBottom="@id/loginresourcelodingprogressbar"
         android:layout_alignRight="@id/loginresourcelodingprogressbar"
         android:layout_alignLeft="@id/loginresourcelodingprogressbar"
-    />
+        android:id="@+id/pleasewait"
+        />
 </RelativeLayout>

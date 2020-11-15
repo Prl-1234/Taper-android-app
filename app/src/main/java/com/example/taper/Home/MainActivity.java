@@ -3,13 +3,17 @@ package com.example.taper.Home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.taper.Login.Login_Activity;
 import com.example.taper.R;
 import com.example.taper.Utils.BottomNavigationViewHelper;
 import com.example.taper.Utils.SectionPagerAdapter;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Context mcontext=MainActivity.this;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    public MainActivity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +41,19 @@ public class MainActivity extends AppCompatActivity {
         setUpFirebase();
         //mAuth = FirebaseAuth.getInstance();
     }
+    private void checkcurrentuser(FirebaseUser user){
+        if(user==null){
+            Intent intent=new Intent(mcontext, Login_Activity.class);
+            startActivity(intent);
+        }
+    }
     private void setUpFirebase(){
         mAuth=FirebaseAuth.getInstance();
         mAuthListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
+                checkcurrentuser(user);
                 if(user!=null){
 
                 }
@@ -56,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         mAuth.addAuthStateListener(mAuthListener);
+        FirebaseUser user = mAuth.getCurrentUser();
+        checkcurrentuser(user);
     }
 
     @Override

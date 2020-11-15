@@ -18,9 +18,12 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.taper.Home.MainActivity;
+import com.example.taper.Models.UserAccountSetting;
+import com.example.taper.Models.UserSettings;
 import com.example.taper.R;
 import com.example.taper.Utils.BottomNavigationViewHelper;
 import com.example.taper.Utils.SectionStatePageAdapter;
+import com.example.taper.Utils.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class AccountSettingActivity extends AppCompatActivity {
 
         setUpSettingList();
         setUpFragments();
+        getIncomingIntent();
         ImageView backarrow=(ImageView) findViewById(R.id.backArrow);
         backarrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +53,12 @@ public class AccountSettingActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private void getIncomingIntent(){
+        Intent intent=getIntent();
+        if(intent.hasExtra(getString(R.string.calling_activity))){
+            setmViewPager(pagerAdapter.getFragmentNumber(getString(R.string.edit_profile_fragment)));
+        }
     }
     private void setUpFragments(){
         pagerAdapter=new SectionStatePageAdapter(getSupportFragmentManager());
@@ -82,4 +92,5 @@ public class AccountSettingActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(Activity_num);
         menuItem.setChecked(true);
     }
+
 }

@@ -2,4 +2,26 @@
     <string name="app_name">taper</string>
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
+    <string name="profile_fragment">Profile</string>
+    <string name="auth_failed">Failed To Authenticate</string>
+    <string name="auth_success">Logged in</string>
+    <string name="field_username">username</string>
+    <string name="field_displayname">display_name</string>
+    <string name="field_description">description</string>
+    <string name="field_website">website</string>
+    <string name="field_phoneNumber">phone_number</string>
+    <string name="photo">PHOTO</string>
+    <string name="gallery">GALLERY</string>
+    <string name="string_open_camera">Open Camera</string>
+
+    <string name="field_email">email</string>
+    <string name="dbname_users">users</string>
+    <string name="dbname_user_account_settings">user_account_setting</string>
+    <string name="calling_activity">calling_activity</string>
+
+    <string name="profile_activity">Profile Activity</string>
+
+    <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
+
+
 </resources>

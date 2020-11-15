@@ -4,14 +4,6 @@
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-<!--        ******TOP TOOLBAR*****-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/relLayout1">
-            <include layout="@layout/snippet_top_profilebar"/>
-
-        </RelativeLayout>
 <!--        ******MIDDLE SECTION******-->
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,36 +12,36 @@
             android:id="@+id/relLayout2"
             android:background="@drawable/white_grey_border"
             >
+
             <LinearLayout
+                android:id="@+id/linlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/linlayout"
-                android:weightSum="100"
-                    >
+                android:weightSum="100">
+
                 <RelativeLayout
-                    android:layout_width="0dp"
+                    android:layout_width="139dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="25"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="25dp"
-                    >
+                    android:layout_marginTop="25dp"
+                    android:layout_weight="40">
+
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
                         android:id="@+id/profile_image"
+                        android:layout_width="139dp"
+                        android:layout_height="139dp"
                         app:civ_border_color="@color/black"
-                        app:civ_border_width="2dp"
-                        android:layout_centerVertical="true"
-                        />
+                        app:civ_border_width="2dp" />
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:layout_width="0dp"
+                    android:layout_width="221dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="75"
                     android:layout_margin="30dp"
-                    >
-                    <include layout="@layout/snippet_top_profile"/>
+                    android:layout_weight="60">
+
+                    <include layout="@layout/snippet_top_profile" />
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
@@ -59,6 +51,7 @@
                 android:layout_below="@id/linlayout"
                 android:padding="10dp"
                 android:id="@+id/linlayout2"
+                android:layout_marginLeft="15dp"
                 >
                 <TextView
                     android:layout_width="match_parent"
@@ -81,7 +74,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/email"
+                    android:id="@+id/website"
                     android:textColor="@color/black"
                     android:text="pan@gmail"
                     android:textSize="20sp"
