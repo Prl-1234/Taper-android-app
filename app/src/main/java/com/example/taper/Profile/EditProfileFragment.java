@@ -1,5 +1,6 @@
 package com.example.taper.Profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.taper.Models.User;
 import com.example.taper.Models.UserAccountSetting;
 import com.example.taper.Models.UserSettings;
 import com.example.taper.R;
+import com.example.taper.Share.ShareActivity;
 import com.example.taper.Utils.FirebaseMethods;
 import com.example.taper.Utils.UniversalImageLoader;
 import com.example.taper.dialog.ConfirmPasswordDialog;
@@ -159,7 +161,15 @@ public class EditProfileFragment extends Fragment implements
         mEmail.setText(userSettings.getUser().getEmail());
         mUsername.setText(setting.getUsername());
         mPhoneNumber.setText(String.valueOf(userSettings.getUser().getPhone_number()));
-
+        mChangeProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), ShareActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
     private void checkIfUserNameExists(final String username){
         DatabaseReference reference=FirebaseDatabase.getInstance().getReference();

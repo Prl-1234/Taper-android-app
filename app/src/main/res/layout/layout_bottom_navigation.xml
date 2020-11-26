@@ -11,6 +11,7 @@
             android:id="@+id/bottom_Nav_View"
             android:background="@drawable/peach_grey_border"
             app:menu="@menu/bottom_navigation"
+
             >
 
         </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>

@@ -45,7 +45,9 @@ public class GridImageAdapter extends ArrayAdapter<String> {
         if(convertView==null){
             convertView=mInflater.inflate(layoutResource,parent,false);
             holder =new ViewHolder();
-            holder.mProgressBar=(ProgressBar) convertView.findViewById(R.id.profile_progress);
+          //  holder.mProgressBar=(ProgressBar) convertView.findViewById(R.id.profile_progress);
+
+            holder.mProgressBar=(ProgressBar) convertView.findViewById(R.id.gridImageViewProgressBar);
             holder.image=(SquareImageView) convertView.findViewById(R.id.gridImageView);
             convertView.setTag(holder);
         }
@@ -54,7 +56,7 @@ public class GridImageAdapter extends ArrayAdapter<String> {
         }
         String imgURL=getItem(position);
         ImageLoader imageLoader=ImageLoader.getInstance();
-        imageLoader.displayImage(imgURL, holder.image, new ImageLoadingListener() {
+        imageLoader.displayImage(mAppend+imgURL, holder.image, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
                 if(holder.mProgressBar!=null){

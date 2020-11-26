@@ -2,6 +2,8 @@ package com.example.taper.Profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -22,6 +25,7 @@ import com.example.taper.Models.UserAccountSetting;
 import com.example.taper.Models.UserSettings;
 import com.example.taper.R;
 import com.example.taper.Utils.BottomNavigationViewHelper;
+import com.example.taper.Utils.FirebaseMethods;
 import com.example.taper.Utils.SectionStatePageAdapter;
 import com.example.taper.Utils.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -31,9 +35,10 @@ import java.util.ArrayList;
 public class AccountSettingActivity extends AppCompatActivity {
     private Context mContext;
     private static final int Activity_num=4;
-    private SectionStatePageAdapter pagerAdapter;
+    public SectionStatePageAdapter pagerAdapter;
     private ViewPager mViewPager;
     private RelativeLayout mRelativeLayout;;
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +59,27 @@ public class AccountSettingActivity extends AppCompatActivity {
             }
         });
     }
+    @RequiresApi(api = Build.VERSION_CODES.R)
     private void getIncomingIntent(){
         Intent intent=getIntent();
+        if(intent.hasExtra(getString(R.string.selected_image))
+        ||intent.hasExtra(getString(R.string.selected_bitmap))) {
+
+
+            if (intent.getStringExtra(getString(R.string.return_to_fragment)).equals(getString(R.string.edit_profile_fragment))) {
+                if (intent.hasExtra(getString(R.string.selected_image))) {
+                    FirebaseMethods firebaseMethods = new FirebaseMethods(AccountSettingActivity.this);
+                    firebaseMethods.uploadNewPhoto(getString(R.string.profile_photo), null, 0,
+                            intent.getStringExtra(getString(R.string.selected_image)), null);
+                } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
+                    FirebaseMethods firebaseMethods = new FirebaseMethods(AccountSettingActivity.this);
+                    firebaseMethods.uploadNewPhoto(getString(R.string.profile_photo), null, 0,
+                            null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+                }
+
+            }
+        }
+
         if(intent.hasExtra(getString(R.string.calling_activity))){
             setmViewPager(pagerAdapter.getFragmentNumber(getString(R.string.edit_profile_fragment)));
         }
@@ -65,7 +89,7 @@ public class AccountSettingActivity extends AppCompatActivity {
         pagerAdapter.addFragment(new EditProfileFragment(),getString(R.string.edit_profile_fragment));
         pagerAdapter.addFragment(new SignOutFragment(),getString(R.string.sign_out_fragment));
     }
-    private void setmViewPager(int fragmentNumber){
+    public void setmViewPager(int fragmentNumber){
         mRelativeLayout.setVisibility(View.GONE);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setCurrentItem(fragmentNumber);
@@ -87,7 +111,7 @@ public class AccountSettingActivity extends AppCompatActivity {
     private void setup_bottom_navigation() {
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottom_Nav_View);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext,this,bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(Activity_num);
         menuItem.setChecked(true);

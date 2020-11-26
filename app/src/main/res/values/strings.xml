@@ -10,18 +10,30 @@
     <string name="field_description">description</string>
     <string name="field_website">website</string>
     <string name="field_phoneNumber">phone_number</string>
+    <string name="view_post_fragment">View Post</string>
     <string name="photo">PHOTO</string>
+    <string name="activity_number">activity_number</string>
+    <string name="string_next">Next</string>
     <string name="gallery">GALLERY</string>
+    <string name="new_photo">new_photo</string>
+    <string name="profile_photo">profile_photo</string>
     <string name="string_open_camera">Open Camera</string>
+    <string name="return_to_fragment">return_to_Fragment</string>
+    <string name="selected_bitmap">selected_bitmap</string>
 
     <string name="field_email">email</string>
     <string name="dbname_users">users</string>
+    <string name="dbname_photos">photos</string>
+    <string name="dbname_user_photos">user_photos</string>
     <string name="dbname_user_account_settings">user_account_setting</string>
     <string name="calling_activity">calling_activity</string>
 
     <string name="profile_activity">Profile Activity</string>
 
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
+    <string name="selected_image">selected_image</string>
+    <string name="string_share">Share</string>
+    <string name="field_user_id">user_id</string>
 
 
 </resources>

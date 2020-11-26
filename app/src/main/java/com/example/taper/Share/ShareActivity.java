@@ -1,10 +1,10 @@
 package com.example.taper.Share;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TableLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.taper.R;
-import com.example.taper.Search.Gallery_fragment;
-import com.example.taper.Search.Photo_fragment;
 import com.example.taper.Utils.BottomNavigationViewHelper;
 import com.example.taper.Utils.Permissions;
 import com.example.taper.Utils.SectionPagerAdapter;
@@ -25,6 +23,7 @@ public class ShareActivity extends AppCompatActivity {
     private static final int Activity_num=3;
     private static final int VERIFY_PERMISSION_REQUEST=1;
     private ViewPager mViewPager;
+    private Context mconext=ShareActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +68,9 @@ public class ShareActivity extends AppCompatActivity {
         }
         return true;
     }
+    public int getTask(){
+        return getIntent().getFlags();
+    }
 
     public boolean checkPermissions(String permission){
         int permissionRequest= ActivityCompat.checkSelfPermission(ShareActivity.this,permission);
@@ -82,7 +84,7 @@ public class ShareActivity extends AppCompatActivity {
     private void setup_bottom_navigation(){
         BottomNavigationViewEx bottomNavigationViewEx=(BottomNavigationViewEx) findViewById(R.id.bottom_Nav_View);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(ShareActivity.this,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mconext,this,bottomNavigationViewEx);
         Menu menu=bottomNavigationViewEx.getMenu();
         MenuItem menuItem=menu.getItem(Activity_num);
         menuItem.setChecked(true);

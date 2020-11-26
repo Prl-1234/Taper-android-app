@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     private void setup_bottom_navigation(){
         BottomNavigationViewEx bottomNavigationViewEx=(BottomNavigationViewEx) findViewById(R.id.bottom_Nav_View);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(MainActivity.this,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mcontext,this,bottomNavigationViewEx);
         Menu menu=bottomNavigationViewEx.getMenu();
         MenuItem menuItem=menu.getItem(Activity_num);
         menuItem.setChecked(true);

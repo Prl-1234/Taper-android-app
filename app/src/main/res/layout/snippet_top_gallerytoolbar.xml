@@ -1,0 +1,57 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/white_grey_border"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profiletoolbar">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/icCloseShare"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_blackcross"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/icCloseShare"
+                    android:text="GALLERY"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:id="@+id/spinnerDirectory"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+
+                    >
+
+                </Spinner>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_next"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="13dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/green"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/toNext"
+
+
+                    >
+
+                </TextView>
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+</merge>

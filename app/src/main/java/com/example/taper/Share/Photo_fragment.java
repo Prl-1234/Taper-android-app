@@ -1,6 +1,7 @@
-package com.example.taper.Search;
+package com.example.taper.Share;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.taper.Profile.AccountSettingActivity;
 import com.example.taper.R;
 import com.example.taper.Share.ShareActivity;
 import com.example.taper.Utils.Permissions;
@@ -45,12 +47,40 @@ public class Photo_fragment extends Fragment {
 
         return view;
     }
+    private boolean isRightTask(){
+        if(((ShareActivity)getActivity()).getTask()==0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==CAMERA_REQUEST_CODE){
+            Bitmap bitmap;
+            bitmap=(Bitmap) data.getExtras().get("data");
+            if(isRightTask()){
+                try{
+                    Intent intent=new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
+                    startActivity(intent);
+                }catch (NullPointerException e){
 
+                }
+            }else{
+                try{
+                    Intent intent=new Intent(getActivity(), AccountSettingActivity.class);
+                    intent.putExtra(getString(R.string.selected_bitmap),bitmap);
+                    intent.putExtra(getString(R.string.return_to_fragment),getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                    getActivity().finish();
+                }catch (NullPointerException e){
+
+                }
+            }
         }
     }
 }

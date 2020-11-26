@@ -1,5 +1,6 @@
 package com.example.taper.Like;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 public class LikeActivity extends AppCompatActivity {
     private static final String TAG="SearchAcitivity";
     private static final int Activity_num=2;
+    private Context mContext=LikeActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class LikeActivity extends AppCompatActivity {
     private void setup_bottom_navigation(){
         BottomNavigationViewEx bottomNavigationViewEx=(BottomNavigationViewEx) findViewById(R.id.bottom_Nav_View);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(LikeActivity.this,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext,this,bottomNavigationViewEx);
         Menu menu=bottomNavigationViewEx.getMenu();
         MenuItem menuItem=menu.getItem(Activity_num);
         menuItem.setChecked(true);
