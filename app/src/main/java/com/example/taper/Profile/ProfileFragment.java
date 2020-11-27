@@ -13,12 +13,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.taper.Models.Likes;
 import com.example.taper.Models.Photo;
 import com.example.taper.Models.User;
 import com.example.taper.Models.UserAccountSetting;
@@ -38,7 +40,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -124,11 +130,32 @@ public class ProfileFragment extends Fragment {
         Query query=reference
                 .child(getString(R.string.dbname_user_photos))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot singleSnaphot:snapshot.getChildren()){
-                    photos.add(singleSnaphot.getValue(Photo.class));
+                for(DataSnapshot singleSnapshot:snapshot.getChildren()){
+
+                    Photo photo=new Photo();
+                    Map<String,Object> objectMap=(HashMap<String,Object>) singleSnapshot.getValue();
+                    photo.setCaption(objectMap.get(getString(R.string.field_caption)).toString());
+                    photo.setTags(objectMap.get(getString(R.string.field_tags)).toString());
+                    photo.setPhoto_id(objectMap.get(getString(R.string.field_photo_id)).toString());
+                    photo.setUser_id(objectMap.get(getString(R.string.field_user_id)).toString());
+                    photo.setDate_created(objectMap.get(getString(R.string.field_date_created)).toString());
+                    photo.setImage_path(objectMap.get(getString(R.string.field_image_path)).toString());
+
+                    List<Likes> likesList=new ArrayList<Likes>();
+
+                    for(DataSnapshot dataSnapshot:singleSnapshot
+                            .child(getString(R.string.field_likes)).getChildren()){
+                        Likes like =new Likes();
+                        like.setUser_id(dataSnapshot.getValue(Likes.class).getUser_id());
+                        likesList.add(like);
+                    }
+                    photo.setLikes(likesList);
+                    photos.add(photo);
+
                 }
                 //setup our image grid
                 int gridWidth=getResources().getDisplayMetrics().widthPixels;
@@ -153,8 +180,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+
             }
         });
+
     }
 
     @Override
