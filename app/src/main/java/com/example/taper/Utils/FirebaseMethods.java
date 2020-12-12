@@ -120,7 +120,7 @@ public class FirebaseMethods {
                             Toast.makeText(mcontext, R.string.auth_failed, Toast.LENGTH_SHORT).show();
                         }
                         else if(task.isSuccessful()){
-                            sendVerificationEmail();;
+                            sendVerificationEmail();
                             userid=mAuth.getCurrentUser().getUid();
                         }
                     }
@@ -149,7 +149,7 @@ public class FirebaseMethods {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(mcontext, "", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mcontext, "Verified", Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 Toast.makeText(mcontext, "Couldn't send Email verification", Toast.LENGTH_SHORT).show();

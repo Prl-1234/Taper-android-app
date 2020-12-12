@@ -1,6 +1,9 @@
 package com.example.taper.Models;
 
-public class UserAccountSetting {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class UserAccountSetting implements Parcelable {
     private String description;
     private String display_name;
     private long followers;
@@ -67,6 +70,30 @@ public class UserAccountSetting {
 //        this.user_id = user_id;
 //    }
 
+
+    protected UserAccountSetting(Parcel in) {
+        description = in.readString();
+        display_name = in.readString();
+        followers = in.readLong();
+        following = in.readLong();
+        posts = in.readLong();
+        profile_photo = in.readString();
+        username = in.readString();
+        website = in.readString();
+        user_id = in.readString();
+    }
+
+    public static final Creator<UserAccountSetting> CREATOR = new Creator<UserAccountSetting>() {
+        @Override
+        public UserAccountSetting createFromParcel(Parcel in) {
+            return new UserAccountSetting(in);
+        }
+
+        @Override
+        public UserAccountSetting[] newArray(int size) {
+            return new UserAccountSetting[size];
+        }
+    };
 
     public String getUser_id() {
         return user_id;
@@ -152,5 +179,23 @@ public class UserAccountSetting {
                 ", username='" + username + '\'' +
                 ", website='" + website + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(description);
+        parcel.writeString(display_name);
+        parcel.writeLong(followers);
+        parcel.writeLong(following);
+        parcel.writeLong(posts);
+        parcel.writeString(profile_photo);
+        parcel.writeString(username);
+        parcel.writeString(website);
+        parcel.writeString(user_id);
     }
 }

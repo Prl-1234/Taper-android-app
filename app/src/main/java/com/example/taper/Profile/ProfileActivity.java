@@ -1,6 +1,7 @@
 package com.example.taper.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -12,9 +13,27 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.taper.Models.Photo;
 import com.example.taper.R;
+import com.example.taper.Utils.ViewCommentsFragment;
 import com.example.taper.Utils.ViewPostFragment;
+import com.example.taper.Utils.ViewProfileFragment;
 
-public class ProfileActivity extends AppCompatActivity implements ProfileFragment.OnGridImageSelectedListener {
+public class ProfileActivity extends AppCompatActivity implements
+        ProfileFragment.OnGridImageSelectedListener,
+        ViewPostFragment.OnCommentThreadSelectedListener,
+        ViewProfileFragment.OnGridImageSelectedListener
+{
+    @Override
+    public void onCommentThreadSelectedListener(Photo photo) {
+        ViewCommentsFragment fragment=new ViewCommentsFragment();
+        Bundle args=new Bundle();
+        args.putParcelable(getString(R.string.photo),photo);
+        fragment.setArguments(args);
+
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container,fragment);
+        transaction.addToBackStack(getString(R.string.view_comment_fragment));
+        transaction.commit();
+    }
     private static final String TAG="SearchAcitivity";
     private static final int Activity_num=4;
     private ProgressBar mProgressBar;
@@ -36,11 +55,31 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
 //        tempGridSetup();
     }
     private void init(){
-         ProfileFragment fragment = new ProfileFragment();
-         FragmentTransaction transaction=ProfileActivity.this.getSupportFragmentManager().beginTransaction();
-         transaction.replace(R.id.container,fragment);
-         transaction.addToBackStack(getString(R.string.profile_fragment));
-         transaction.commit();
+        Intent intent=getIntent();
+        if(intent.hasExtra(getString(R.string.calling_activity))){
+            if(intent.hasExtra(getString(R.string.intent_user))){
+                ViewProfileFragment fragment=new ViewProfileFragment();
+                Bundle args=new Bundle();
+                args.putParcelable(getString(R.string.intent_user),intent.getParcelableExtra(getString(R.string.intent_user)));
+                fragment.setArguments(args);
+
+                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container,fragment);
+                transaction.addToBackStack(getString(R.string.view_profile_fragment));
+                transaction.commit();
+            }else{
+                Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else{
+            ProfileFragment fragment = new ProfileFragment();
+            FragmentTransaction transaction=ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container,fragment);
+            transaction.addToBackStack(getString(R.string.profile_fragment));
+            transaction.commit();
+        }
+
     }
 
     @Override
@@ -57,6 +96,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
         transaction.commit();
 
     }
+
 
 
 }

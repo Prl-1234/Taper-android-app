@@ -48,6 +48,7 @@ NextActivity extends AppCompatActivity {
         mfirebaseMethods=new FirebaseMethods(NextActivity.this);
         mCaption=(EditText) findViewById(R.id.description_next);
         ImageView backarrow=(ImageView) findViewById(R.id.icbackshare);
+
         backarrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -43,8 +43,8 @@ public class Register_Acitivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         mcontext=Register_Acitivity.this;
         firebaseMethods=new FirebaseMethods(mcontext);
-        setUpFirebase();
         initWidget();
+        setUpFirebase();
         init();
     }
     private void init(){

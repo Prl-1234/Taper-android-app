@@ -4,6 +4,7 @@ package com.example.taper.Home;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
@@ -14,10 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.taper.Login.Login_Activity;
+import com.example.taper.Models.Photo;
+import com.example.taper.Models.UserAccountSetting;
 import com.example.taper.R;
 import com.example.taper.Utils.BottomNavigationViewHelper;
 import com.example.taper.Utils.SectionPagerAdapter;
 import com.example.taper.Utils.UniversalImageLoader;
+import com.example.taper.Utils.ViewCommentsFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -104,5 +108,16 @@ public class MainActivity extends AppCompatActivity {
         Menu menu=bottomNavigationViewEx.getMenu();
         MenuItem menuItem=menu.getItem(Activity_num);
         menuItem.setChecked(true);
+    }
+    public void onCommentThreadSelector(Photo photo, UserAccountSetting setting){
+        ViewCommentsFragment fragment=new ViewCommentsFragment();
+        Bundle args=new Bundle();
+        args.putParcelable(getString(R.string.bundle_photo),photo);
+        args.putParcelable(getString(R.string.bundle_user_account_settings),setting);
+        fragment.setArguments(args);
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container,fragment);
+        transaction.commit();
+
     }
 }
